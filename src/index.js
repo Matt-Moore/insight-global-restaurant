@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
   function Search(props) {
-
     return (
       <header id="sitehead">
         {JSON.stringify(props.cities)}
@@ -16,8 +15,8 @@ import './index.css';
   }
 
   function Restaurant(props) {
-    const image = 'https://via.placeholder.com/512x288.png?text=' + props.name.replace(/ /g, '+');
-    let value = calulateValue(props.price);
+    const image = 'https://via.placeholder.com/512x288.png?text=' + props.name.replace(/\s/g, '+');
+    const value = calulateValue(props.price);
 
     return (
       <article className="card">
@@ -25,7 +24,6 @@ import './index.css';
           <h2>{props.name}</h2>
           <img src={image} width="512" height="288" title={props.name} alt=""></img>
         </header>
-        <div>{props.area}</div>
         <div>{props.address}</div>
         <footer>
           <span title={value.text + ' cost'} aria-label={value.text + ' cost'}>
@@ -45,7 +43,7 @@ import './index.css';
           </div>
         )}
       </div>
-    )
+    );
   }
 
   function RestaurantCount(props) {
@@ -55,11 +53,6 @@ import './index.css';
       return <small>No results</small>
     }
   }
-
-  
-
-
-  
 
   class Page extends React.Component {
     constructor(props) {
@@ -178,7 +171,7 @@ import './index.css';
   }
 
   function titleCase(string) {
-    return string.replace(/\b(\w)/g, (a, c1) => c1.toUpperCase()).replace(/\B(\w)/g, (a, c1) => c1.toLowerCase())
+    return string.replace(/\b(\w)/g, (a, c1) => c1.toUpperCase()).replace(/\B(\w)/g, (a, c1) => c1.toLowerCase());
   }
 
 
