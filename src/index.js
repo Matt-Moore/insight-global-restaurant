@@ -6,10 +6,9 @@ import './index.css';
 
   function Search(props) {
     return (
-      <header id="sitehead">
-        {JSON.stringify(props.cities)}
-        <input name="city" placeholder="City" aria-label="Search by city" aria-controls="content" onChange={props.searchCity}></input>
-        <input name="refine" placeholder="Refine" aria-label="Refine search results" aria-controls="content" onChange={props.searchRefine}></input>
+      <header id="sitehead" role="search" aria-label="Search restaurants">
+        <input name="city" title="Search by city" type="search" placeholder="City" aria-required="true" aria-controls="content" onChange={props.searchCity}></input>
+        <input name="refine" title="Refine search results" type="search" placeholder="Refine" aria-controls="content" onChange={props.searchRefine}></input>
       </header>
     )
   }
@@ -49,6 +48,8 @@ import './index.css';
   function RestaurantCount(props) {
     if (props.count.total) {
       return <small>Showing {props.count.from} to {props.count.to} of {props.count.total} found in {titleCase(props.count.city)}</small>
+    } else if (!props.count.city.length) {
+      return <small>Enter a city above</small>
     } else {
       return <small>No results</small>
     }
@@ -74,8 +75,6 @@ import './index.css';
           .then(res => res.json())
           .then(
             (result) => {
-              console.log("searchCity()")
-              console.log(result)
               this.setState({
                 isLoaded: true,
                 restaurants: result.restaurants,
@@ -127,7 +126,7 @@ import './index.css';
       }
 
       return (
-        <div>{JSON.stringify(this.state.cities)}
+        <div>
           <Search
             searchCity={(event) => this.searchCity(event.target.value)}
             searchRefine={(event) => this.searchRefine(event.target.value)} />
