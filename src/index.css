@@ -142,3 +142,34 @@ main {
         grid-template-columns: repeat(5, 1fr);
     }
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .cardlist {
+        display: flex;
+    }
+
+    @media(min-width: 580px) {
+        .cardlist > div {
+            flex: 0 0 50%;
+        }
+    }
+    
+    @media(min-width: 830px) {
+        .cardlist > div {
+            flex: 0 0 33%;
+        }
+    }
+    
+    @media(min-width: 1100px) {
+        .cardlist > div {
+            flex: 0 0 25%;
+        }
+    }
+    
+    @media(min-width: 1350px) {
+        .cardlist > div {
+            flex: 0 0 20%;
+        }
+    }
+    
+ }
