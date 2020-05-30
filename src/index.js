@@ -69,7 +69,7 @@ import './index.css';
     }
 
     searchCity(city) {
-      if (city.length > 2) {
+      if (city.length > 0) {
         fetch('https://opentable.herokuapp.com/api/restaurants?city=' + city + '&per_page=' + this.state.pageCount)
           .then(res => res.json())
           .then(
@@ -78,22 +78,31 @@ import './index.css';
               console.log(result)
               this.setState({
                 isLoaded: true,
+                restaurants: result.restaurants,
+                filtered: result.restaurants,
                 totalCount: result.total_entries,
-                restaurants: result.restaurants
               });
             },
             (error) => {
               this.setState({
                 isLoaded: true,
-                error
+                restaurants: [],
+                filtered: [],
+                totalCount: 0,
+                error,
               });
             }
           );
+      } else {
+        this.setState({
+          restaurants: [],
+          filtered: [],
+          totalCount: 0,
+        })
       }
 
       this.setState({
         city: city,
-        filtered: this.state.restaurants 
       });
     }
 
