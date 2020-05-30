@@ -1,13 +1,144 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+    font-size: 62.5%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin: 0;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+
+#sitehead {
+    display: flex;
+    justify-content: center;
+    padding: .75em .5em;
+    border-bottom: 2px solid #999;
+}
+
+#sitehead input, #sitehead button {
+    margin: 0 .75em;
+}
+
+main {
+    padding: 1em;
+}
+
+
+
+
+
+
+
+.cardlist {
+    display: grid;
+    align-items: stretch;
+}
+
+.cardlist > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 16px;
+    border: 1px solid #CCC;
+    box-shadow: 0 0 5px #999;
+    border-radius: 8px;
+}
+
+.card > div {
+    flex-grow: 1;
+}
+
+.card header {
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    margin: 0;
+    padding: 6px 12px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    order: -1;
+}
+
+.card > div {
+    padding: 0 12px;
+}
+
+.card footer {
+    margin-top: .5em;
+    padding: 8px 12px;
+    background-color: #EEE;
+}
+
+/*
+    small: 580px
+    medium: 830px
+    large: 1100px
+    x-large: 1350px
+*/
+
+@media(max-width: 579px) {
+    #sitehead {
+        flex-direction: column;
+        align-items: center;
+        padding: .5em;
+    }
+
+    #sitehead input, #sitehead button {
+        margin: .5em 0;
+    }
+}
+
+@media(min-width: 580px) {
+    .cardlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    
+}
+
+@media(min-width: 830px) {
+    .cardlist {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    main {
+        padding: 1em 2em;
+    }
+}
+
+@media(min-width: 1100px) {
+    .cardlist {
+        grid-template-columns: repeat(4, 1fr);
+    }    
+}
+
+@media(min-width: 1350px) {
+    .cardlist {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
