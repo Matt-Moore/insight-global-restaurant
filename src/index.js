@@ -69,7 +69,7 @@ import './index.css';
     }
 
     searchCity(city) {
-      if (city.length > 3) {
+      if (city.length > 2) {
         fetch('https://opentable.herokuapp.com/api/restaurants?city=' + city + '&per_page=' + this.state.pageCount)
           .then(res => res.json())
           .then(
