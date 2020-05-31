@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Front-End Interview Test
+Apr 2020
 
 ## Available Scripts
 
@@ -12,11 +13,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
@@ -27,42 +23,68 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Purpose
+Open Table has a public API available at [https://opentable.herokuapp.com/](https://opentable.herokuapp.com/)
+As an example, [http://opentable.herokuapp.com/api/restaurants?city=toronto](http://opentable.herokuapp.com/api/restaurants?city=toronto) returns a list of restaurants that deliver to Toronto, including some basic restaurant information.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Platform
+The following technologies are **required**:
+- ReactJS
+- Redux
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Goals
+Provide a list of restaurants based on city, address, and name. Listed restaurants provide the following details:
+- Name
+- Address
+- Price
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Two (2) input controls are provided to users:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### `city`
+A string that is matched against city names in the database.
 
-## Learn More
+#### `refine` (optional)
+An optional string, that filters the current list of restaurants based on the fields:
+- Name
+- Address
+- Area
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Additional Controls
+Additional controls and filters are up to the developer's discretion.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Redux
+Redux is used to store the following information:
+- Name
+- Address
+- Area
 
-### Code Splitting
+### Requirements
+- Feel free to spend as much or as little time on the exercise as you like as long as the following requirements have been met.
+- Please complete the user story below.
+- Your code should compile and run in one step.
+- Try not to use any UI library (ex. Bootstrap), as the more of your own hand-written code and design is there, the better it is to evaluate your own skills.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### User Story
+> As a user **running the application** I can **view a list of restaurants in a user submitted City (e.g. Toronto)** So that **I know which restaurants are currently available**
 
-### Analyzing the Bundle Size
+#### Acceptance criteria
+- For the known City, results are returned
+- User should be able to further refine the results, i.e. using part of a restaurant name, or street, area, etc.
+- You **must** include tests
+- UI must be responsive
+- Must be fully WCAG 2.0/2.1 AA compliant for the entire page
+- Must perform well in a Lighthouse audit - Performance, SEO, Accessibility
+- The Name, Cuisine Types and Rating of the restaurant are displayed
+- Must work in common browsers, desktop and mobile (Chrome, Safari, IE11)
+- Send your Github repo of your application
+- Host the app on heroku or any other cloud host platform of your choice
+- Send your answers to the tech questions as a .md file in your repo
+ 
+##### Technical Questions
+Please answer the following questions in a markdown file called `answers-to-technical-questions.md`:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- How long did you spend on the coding assignment? What would you add to your solution if you had more time? If you didn't spend much time on the coding test then use this as an opportunity to explain what you would add.
+- What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
+- How would you track down a performance issue in production? Have you ever had to do this?
+- How would you improve the API that you just used?
+- Please describe yourself using JSON.
