@@ -1,7 +1,7 @@
 # Technical Questions
 
 ## How long did you spend on the coding assignment? What would you add to your solution if you had more time? If you didn't spend much time on the coding test then use this as an opportunity to explain what you would add.
-I spent about 8 hours on this. 
+I spent about 8 hours on the initial app. As I am retaking this test (for another position), I spent about 2 hours adding new the new filters. 
 
 First things I'd add with more time, would be redux and tests. I know these were listed as requirements, however: I have not used Redux (and focused on providing a working product); My focus has been more on providing valid front-ended code, and testing were the focus of others on the team.
 
