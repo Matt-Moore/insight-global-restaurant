@@ -3,11 +3,11 @@
 ## How long did you spend on the coding assignment? What would you add to your solution if you had more time? If you didn't spend much time on the coding test then use this as an opportunity to explain what you would add.
 I spent about 8 hours on the initial app. As I am retaking this test (for another position), I spent about 2 hours adding new the new filters. 
 
-First things I'd add with more time, would be redux and tests. I know these were listed as requirements, however: I have not used Redux (and focused on providing a working product); My focus has been more on providing valid front-ended code, and testing were the focus of others on the team.
+First things I'd add with more time, would be redux and tests. I know these were listed as requirements, however: I have not used Redux (and focused on providing a working product); My focus has been more on providing valid front-ended code, and testing was the focus of others on the team.
 
 Next, I'd spend some more time providing a better design. This would also include a tighter IE11 fallback; IE11 has near non-existent support for CSS grid, so I use flexbox to replicate the grid feel. Unofrtunately flexbox does not emulate a grid as cleanly as wanted (flexbox has several pending updates to address petitions to expand its features).
 
-Regarding functionality: it could use more filters (price, distance from a defined point), and more results; either via pages or "infinity scrolling" (Currently it only returns the first 100 results); I would also like to add a `datalist` to provide the city search with all valid city choices, and alleviate the AJAX calls by limiting to valid choices only.
+Regarding functionality: it could use more filters (distance from a defined point), and more results; either via pages or "infinity scrolling" (Currently it only returns the first 100 results); I would also like to add a `datalist` to provide the city search with all valid city choices, and alleviate the AJAX calls by limiting to valid choices only.
 
 Adding multiple language support (and supporting routes) would also expand its use. This would also entail converting the `rel="canonical"` and `rel="alternate"` links to dynamic (currently hard coded as there's only a single page).
 
@@ -59,9 +59,9 @@ It could use an option to provide a location (zip, lat/long, etc.) and a radius 
         "CSS",
         "Javascript",
         "jQuery",
+        "NodeJS",
         "React",
-        "Angular",
-        "NodeJS"
+        "Angular"
     ]
 }
 ```
