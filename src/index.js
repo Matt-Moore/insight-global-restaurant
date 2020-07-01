@@ -6,10 +6,29 @@ import './index.css';
 
   function Search(props) {
     return (
-      <header id="sitehead" role="search" aria-label="Search restaurants">
+      <div>
         <input name="city" title="Search by city" type="search" placeholder="City" aria-required="true" aria-controls="content" onChange={props.searchCity}></input>
         <input name="refine" title="Refine search results" type="search" placeholder="Refine" aria-controls="content" onChange={props.searchRefine}></input>
-      </header>
+      </div>
+    )
+  }
+
+  function Filters(props) {
+    return (
+      <div>
+        <select name="price" title="Filter by price" aria-controls="content" onChange={props.searchFilter}>
+          <option value="0">Price</option>
+          <option value="4">$$$$</option>
+          <option value="3">$$$</option>
+          <option value="2">$$</option>
+          <option value="1">$</option>
+        </select>
+        <select name="sort" title="Sort results" aria-controls="content" onChange={props.searchFilter}>
+          <option value="0">A-Z</option>
+          <option value="priceasc">Price (low to high)</option>
+          <option value="pricedes">Price (high to low)</option>
+        </select>
+      </div>
     )
   }
 
@@ -60,9 +79,10 @@ import './index.css';
       super(props);
       this.state = {
         city: '',
-        refine: '',
+        refine: /.*/i,
         restaurants: [],
         filtered: [],
+        filters: {price: false, sort: false},
         page: 1,
         pageCount: 100,
         totalCount: 0,
@@ -78,7 +98,6 @@ import './index.css';
               this.setState({
                 isLoaded: true,
                 restaurants: result.restaurants,
-                filtered: result.restaurants,
                 totalCount: result.total_entries,
               });
             },
@@ -86,18 +105,19 @@ import './index.css';
               this.setState({
                 isLoaded: true,
                 restaurants: [],
-                filtered: [],
                 totalCount: 0,
                 error,
               });
             }
-          );
+          )
+          .then(() => this.filterRestaurants());
       } else {
         this.setState({
           restaurants: [],
-          filtered: [],
           totalCount: 0,
-        })
+        });
+
+        this.filterRestaurants();
       }
 
       this.setState({
@@ -106,12 +126,65 @@ import './index.css';
     }
 
     searchRefine(refine) {
-      let filter = new RegExp(escapeRegex(refine), 'i');
+      this.setState({
+        refine: new RegExp(escapeRegex(refine), 'i')
+      })
+
+      this.filterRestaurants();
+    }
+
+    searchFilter(filter) {
+      let filters = this.state.filters;
+
+      switch (filter.name) {
+        case 'price':
+          if (filter.value == 0) {
+            filters.price = false;
+          } else {
+            filters.price = parseInt(filter.value);
+          }
+
+          break;
+        case 'sort':
+          if (filter.value == 0) {
+            filters.sort = false;
+          } else {
+            filters.sort = filter.value;
+          }
+
+          break;
+      }
 
       this.setState({
-        filtered: this.state.restaurants.filter((restaurant) => (restaurant.name.match(filter) || restaurant.area.match(filter) || restaurant.address.match(filter)))
+        filters: filters,
       });
-    } 
+
+      this.filterRestaurants();
+    }
+
+
+    filterRestaurants() {
+      let filtered = this.state.restaurants.filter((restaurant) => (restaurant.name.match(this.state.refine) || restaurant.area.match(this.state.refine) || restaurant.address.match(this.state.refine)));
+
+      if (this.state.filters.price) {
+        filtered = filtered.filter((restaurant) => (restaurant.price === this.state.filters.price));
+      }
+
+      if (this.state.filters.sort) {
+        switch (this.state.filters.sort) {
+          case 'priceasc':
+            filtered.sort((a, b) => a.price - b.price);
+            break;
+          case 'pricedes':
+            filtered.sort((a,b) => b.price - a.price);
+            break;
+        }
+      }
+
+      this.setState({
+        filtered: filtered
+      });
+    }
 
     render() {
       let count = {
@@ -127,9 +200,14 @@ import './index.css';
 
       return (
         <div>
-          <Search
-            searchCity={(event) => this.searchCity(event.target.value)}
-            searchRefine={(event) => this.searchRefine(event.target.value)} />
+          <header id="sitehead" role="search" aria-label="Search restaurants">
+            <Search
+              searchCity={(event) => this.searchCity(event.target.value)}
+              searchRefine={(event) => this.searchRefine(event.target.value)} />
+            <Filters
+              searchFilter={(event) => this.searchFilter(event.target)}
+             />
+          </header>
           <main id="content" aria-live="polite">
             <h1>Restaurants</h1>
             <RestaurantCount count={count} />
